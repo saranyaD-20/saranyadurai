@@ -1,4 +1,4 @@
-import { Code2, Database, BarChart3, Wrench } from "lucide-react";
+import { Code2, Database, BarChart3, Wrench, Zap } from "lucide-react";
 
 const skillCategories = [
   {
@@ -47,12 +47,32 @@ const skillCategories = [
 const SkillsSection = () => {
   return (
     <section id="skills" className="section-padding relative overflow-hidden bg-muted/20">
-      {/* Background Effects */}
-      <div className="absolute top-1/2 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl" />
-      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-accent/10 rounded-full blur-3xl" />
+      {/* Grid Background */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,hsl(var(--muted)/0.5)_1px,transparent_1px),linear-gradient(to_bottom,hsl(var(--muted)/0.5)_1px,transparent_1px)] bg-[size:40px_40px]" />
+      
+      {/* Gradient Orbs */}
+      <div className="absolute top-1/2 left-1/4 w-96 h-96 bg-gradient-to-br from-primary/20 to-secondary/10 rounded-full blur-3xl animate-pulse" />
+      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-gradient-to-br from-accent/20 to-neon-pink/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: "1.5s" }} />
+
+      {/* Floating particles */}
+      {[...Array(6)].map((_, i) => (
+        <div
+          key={i}
+          className="absolute w-2 h-2 bg-primary/30 rounded-full animate-float"
+          style={{
+            left: `${15 + i * 15}%`,
+            top: `${20 + (i % 3) * 25}%`,
+            animationDelay: `${i * 0.5}s`,
+          }}
+        />
+      ))}
 
       <div className="container mx-auto relative z-10">
         <div className="text-center mb-16">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-secondary/10 border border-secondary/20 mb-6">
+            <Zap size={16} className="text-secondary" />
+            <span className="text-sm text-secondary font-medium">Technical Expertise</span>
+          </div>
           <h2 className="text-4xl md:text-5xl font-display font-bold mb-4">
             My <span className="gradient-text">Skills</span>
           </h2>
@@ -67,63 +87,73 @@ const SkillsSection = () => {
             return (
               <div
                 key={category.title}
-                className="glass-card p-6 hover-lift"
+                className="glass-card p-6 hover-lift group relative overflow-hidden"
                 style={{
                   animationDelay: `${categoryIndex * 0.1}s`,
                 }}
               >
-                <div className="flex items-center gap-4 mb-6">
-                  <div
-                    className={`p-3 rounded-lg ${
-                      category.color === "primary"
-                        ? "bg-primary/10 text-primary"
-                        : category.color === "secondary"
-                        ? "bg-secondary/10 text-secondary"
-                        : category.color === "accent"
-                        ? "bg-accent/10 text-accent"
-                        : "bg-neon-pink/10 text-neon-pink"
-                    }`}
-                  >
-                    <IconComponent size={24} />
-                  </div>
-                  <h3 className="text-xl font-display font-semibold">{category.title}</h3>
-                </div>
+                {/* Card glow effect */}
+                <div className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ${
+                  category.color === "primary" ? "bg-gradient-to-br from-primary/10 via-transparent to-transparent" :
+                  category.color === "secondary" ? "bg-gradient-to-br from-secondary/10 via-transparent to-transparent" :
+                  category.color === "accent" ? "bg-gradient-to-br from-accent/10 via-transparent to-transparent" :
+                  "bg-gradient-to-br from-neon-pink/10 via-transparent to-transparent"
+                }`} />
 
-                <div className="space-y-4">
-                  {category.skills.map((skill) => (
-                    <div key={skill.name}>
-                      <div className="flex justify-between mb-2">
-                        <span className="text-muted-foreground">{skill.name}</span>
-                        <span
-                          className={`font-semibold ${
-                            category.color === "primary"
-                              ? "text-primary"
-                              : category.color === "secondary"
-                              ? "text-secondary"
-                              : category.color === "accent"
-                              ? "text-accent"
-                              : "text-neon-pink"
-                          }`}
-                        >
-                          {skill.level}%
-                        </span>
-                      </div>
-                      <div className="h-2 bg-muted rounded-full overflow-hidden">
-                        <div
-                          className={`h-full rounded-full transition-all duration-1000 ${
-                            category.color === "primary"
-                              ? "bg-gradient-to-r from-primary to-primary/70"
-                              : category.color === "secondary"
-                              ? "bg-gradient-to-r from-secondary to-secondary/70"
-                              : category.color === "accent"
-                              ? "bg-gradient-to-r from-accent to-accent/70"
-                              : "bg-gradient-to-r from-neon-pink to-neon-pink/70"
-                          }`}
-                          style={{ width: `${skill.level}%` }}
-                        />
-                      </div>
+                <div className="relative z-10">
+                  <div className="flex items-center gap-4 mb-6">
+                    <div
+                      className={`p-3 rounded-xl shadow-lg ${
+                        category.color === "primary"
+                          ? "bg-gradient-to-br from-primary/20 to-primary/5 text-primary shadow-[0_0_20px_hsl(var(--primary)/0.3)]"
+                          : category.color === "secondary"
+                          ? "bg-gradient-to-br from-secondary/20 to-secondary/5 text-secondary shadow-[0_0_20px_hsl(var(--secondary)/0.3)]"
+                          : category.color === "accent"
+                          ? "bg-gradient-to-br from-accent/20 to-accent/5 text-accent shadow-[0_0_20px_hsl(var(--accent)/0.3)]"
+                          : "bg-gradient-to-br from-neon-pink/20 to-neon-pink/5 text-neon-pink shadow-[0_0_20px_hsl(var(--neon-pink)/0.3)]"
+                      }`}
+                    >
+                      <IconComponent size={24} />
                     </div>
-                  ))}
+                    <h3 className="text-xl font-display font-semibold">{category.title}</h3>
+                  </div>
+
+                  <div className="space-y-4">
+                    {category.skills.map((skill) => (
+                      <div key={skill.name} className="group/skill">
+                        <div className="flex justify-between mb-2">
+                          <span className="text-muted-foreground group-hover/skill:text-foreground transition-colors">{skill.name}</span>
+                          <span
+                            className={`font-semibold ${
+                              category.color === "primary" ? "text-primary" :
+                              category.color === "secondary" ? "text-secondary" :
+                              category.color === "accent" ? "text-accent" :
+                              "text-neon-pink"
+                            }`}
+                          >
+                            {skill.level}%
+                          </span>
+                        </div>
+                        <div className="h-3 bg-muted/50 rounded-full overflow-hidden relative">
+                          <div
+                            className={`h-full rounded-full transition-all duration-1000 relative ${
+                              category.color === "primary"
+                                ? "bg-gradient-to-r from-primary via-primary/80 to-primary/60"
+                                : category.color === "secondary"
+                                ? "bg-gradient-to-r from-secondary via-secondary/80 to-secondary/60"
+                                : category.color === "accent"
+                                ? "bg-gradient-to-r from-accent via-accent/80 to-accent/60"
+                                : "bg-gradient-to-r from-neon-pink via-neon-pink/80 to-neon-pink/60"
+                            }`}
+                            style={{ width: `${skill.level}%` }}
+                          >
+                            {/* Shimmer effect */}
+                            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-shimmer" />
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
             );
