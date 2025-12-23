@@ -1,7 +1,15 @@
 import { useState } from "react";
+import emailjs from "@emailjs/browser";
 import { Mail, Phone, Linkedin, Github, Send, MapPin, MessageSquare, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
+import { z } from "zod";
+
+const contactSchema = z.object({
+  name: z.string().trim().min(1, "Name is required").max(100, "Name must be less than 100 characters"),
+  email: z.string().trim().email("Invalid email address").max(255, "Email must be less than 255 characters"),
+  message: z.string().trim().min(1, "Message is required").max(1000, "Message must be less than 1000 characters"),
+});
 
 const contactInfo = [
   {
@@ -42,21 +50,54 @@ const ContactSection = () => {
     message: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errors, setErrors] = useState<{ name?: string; email?: string; message?: string }>({});
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setErrors({});
+
+    // Validate form data
+    const result = contactSchema.safeParse(formData);
+    if (!result.success) {
+      const fieldErrors: { name?: string; email?: string; message?: string } = {};
+      result.error.errors.forEach((err) => {
+        const field = err.path[0] as keyof typeof fieldErrors;
+        fieldErrors[field] = err.message;
+      });
+      setErrors(fieldErrors);
+      return;
+    }
+
     setIsSubmitting(true);
 
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    try {
+      await emailjs.send(
+        "service_2txi07I",
+        "template_46zxkx1",
+        {
+          from_name: formData.name,
+          from_email: formData.email,
+          message: formData.message,
+          to_name: "Saranya D",
+        },
+        "oL0oHiu6UDkWhIEfw"
+      );
 
-    toast({
-      title: "Message Sent! ✨",
-      description: "Thank you for reaching out. I'll get back to you soon!",
-    });
+      toast({
+        title: "Message Sent! ✨",
+        description: "Thank you for reaching out. I'll get back to you soon!",
+      });
 
-    setFormData({ name: "", email: "", message: "" });
-    setIsSubmitting(false);
+      setFormData({ name: "", email: "", message: "" });
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to send message. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -185,9 +226,12 @@ const ContactSection = () => {
                     value={formData.name}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 rounded-xl bg-muted/30 border border-border/50 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all hover:border-primary/50"
+                    className={`w-full px-4 py-3 rounded-xl bg-muted/30 border focus:ring-2 focus:ring-primary/20 outline-none transition-all ${
+                      errors.name ? "border-destructive" : "border-border/50 focus:border-primary hover:border-primary/50"
+                    }`}
                     placeholder="Your name"
                   />
+                  {errors.name && <p className="text-destructive text-sm mt-1">{errors.name}</p>}
                 </div>
 
                 <div>
@@ -201,9 +245,12 @@ const ContactSection = () => {
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 rounded-xl bg-muted/30 border border-border/50 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all hover:border-primary/50"
+                    className={`w-full px-4 py-3 rounded-xl bg-muted/30 border focus:ring-2 focus:ring-primary/20 outline-none transition-all ${
+                      errors.email ? "border-destructive" : "border-border/50 focus:border-primary hover:border-primary/50"
+                    }`}
                     placeholder="your@email.com"
                   />
+                  {errors.email && <p className="text-destructive text-sm mt-1">{errors.email}</p>}
                 </div>
 
                 <div>
@@ -217,9 +264,12 @@ const ContactSection = () => {
                     onChange={handleChange}
                     required
                     rows={5}
-                    className="w-full px-4 py-3 rounded-xl bg-muted/30 border border-border/50 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all resize-none hover:border-primary/50"
+                    className={`w-full px-4 py-3 rounded-xl bg-muted/30 border focus:ring-2 focus:ring-primary/20 outline-none transition-all resize-none ${
+                      errors.message ? "border-destructive" : "border-border/50 focus:border-primary hover:border-primary/50"
+                    }`}
                     placeholder="Your message..."
                   />
+                  {errors.message && <p className="text-destructive text-sm mt-1">{errors.message}</p>}
                 </div>
 
                 <Button
