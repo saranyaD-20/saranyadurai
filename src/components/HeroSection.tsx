@@ -1,4 +1,4 @@
-import { ArrowDown, Eye, Mail, Sparkles, MapPin, Calendar } from "lucide-react";
+import { ArrowDown, Eye, Mail, Sparkles, MapPin, Calendar, Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import profilePhoto from "@/assets/profile-photo.jpg";
 
@@ -101,6 +101,12 @@ const HeroSection = () => {
                 </a>
               </Button>
               <Button variant="neon" size="lg" className="group" asChild>
+                <a href="/Saranya_Resume.pdf" download>
+                  <Download className="mr-2 group-hover:translate-y-0.5 transition-transform" />
+                  Download Resume
+                </a>
+              </Button>
+              <Button variant="ghost" size="lg" className="group border border-border/50 hover:border-primary/50" asChild>
                 <a href="#contact">
                   <Mail className="mr-2 group-hover:rotate-12 transition-transform" />
                   Contact Me
