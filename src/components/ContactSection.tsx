@@ -72,7 +72,7 @@ const ContactSection = () => {
 
     try {
       await emailjs.send(
-        "service_2txi07I",
+        "service_2txi07l",
         "template_46zxkx1",
         {
           from_name: formData.name,
