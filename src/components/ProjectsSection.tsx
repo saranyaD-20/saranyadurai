@@ -1,4 +1,4 @@
-import { ExternalLink, Github, Smartphone, Wallet, Play, Layers } from "lucide-react";
+import { ExternalLink, Github, Smartphone, Wallet, Play, Layers, Plane } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const projects = [
@@ -32,6 +32,22 @@ const projects = [
       "Generate visual reports using Matplotlib",
       "Rule-based expense categorization",
       "Secure storage using CSV/database systems",
+    ],
+    hasVideo: false,
+  },
+  {
+    title: "Greenhouse Gas Emission Analysis",
+    subtitle: "Machine Learning Research Project",
+    icon: Plane,
+    color: "primary",
+    description:
+      "Analyzed aviation emission patterns and predicted trends using SVM, LSTM, and Random Forest models. Improved model accuracy through feature engineering and hyperparameter tuning for environmental assessments.",
+    techStack: ["Python", "SVM", "LSTM", "Random Forest", "Scikit-learn"],
+    highlights: [
+      "Aviation emission pattern analysis",
+      "Multi-model comparison (SVM, LSTM, Random Forest)",
+      "Feature engineering for improved accuracy",
+      "Hyperparameter tuning for environmental assessments",
     ],
     hasVideo: false,
   },
