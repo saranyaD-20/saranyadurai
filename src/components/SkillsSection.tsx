@@ -50,26 +50,38 @@ const SkillsSection = () => {
       {/* Grid Background */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,hsl(var(--muted)/0.5)_1px,transparent_1px),linear-gradient(to_bottom,hsl(var(--muted)/0.5)_1px,transparent_1px)] bg-[size:40px_40px]" />
       
-      {/* Gradient Orbs */}
-      <div className="absolute top-1/2 left-1/4 w-96 h-96 bg-gradient-to-br from-primary/20 to-secondary/10 rounded-full blur-3xl animate-pulse" />
-      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-gradient-to-br from-accent/20 to-neon-pink/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: "1.5s" }} />
+      {/* Radial gradient overlay */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,transparent_0%,hsl(var(--background))_70%)]" />
+      
+      {/* Gradient Orbs - Enhanced */}
+      <div className="absolute top-1/2 left-1/4 w-[450px] h-[450px] bg-gradient-to-br from-primary/25 via-secondary/15 to-transparent rounded-full blur-3xl animate-pulse" />
+      <div className="absolute bottom-1/4 right-1/4 w-[450px] h-[450px] bg-gradient-to-br from-accent/25 via-neon-pink/15 to-transparent rounded-full blur-3xl animate-pulse" style={{ animationDelay: "1.5s" }} />
+      <div className="absolute top-0 right-0 w-[300px] h-[300px] bg-gradient-to-br from-secondary/20 to-primary/10 rounded-full blur-3xl opacity-60" />
 
       {/* Floating particles */}
-      {[...Array(6)].map((_, i) => (
+      {[...Array(8)].map((_, i) => (
         <div
           key={i}
-          className="absolute w-2 h-2 bg-primary/30 rounded-full animate-float"
+          className="absolute w-2 h-2 bg-secondary/30 rounded-full animate-float"
           style={{
-            left: `${15 + i * 15}%`,
-            top: `${20 + (i % 3) * 25}%`,
-            animationDelay: `${i * 0.5}s`,
+            left: `${10 + i * 12}%`,
+            top: `${15 + (i % 4) * 20}%`,
+            animationDelay: `${i * 0.4}s`,
           }}
         />
       ))}
 
+      {/* Floating icons */}
+      <div className="absolute top-1/4 right-10 opacity-20 animate-float">
+        <Code2 size={36} className="text-primary" />
+      </div>
+      <div className="absolute bottom-1/3 left-16 opacity-20 animate-float" style={{ animationDelay: "1.2s" }}>
+        <Database size={32} className="text-secondary" />
+      </div>
+
       <div className="container mx-auto relative z-10">
         <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-secondary/10 border border-secondary/20 mb-6">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-secondary/10 border border-secondary/20 mb-6 backdrop-blur-sm shadow-[0_0_20px_hsl(var(--secondary)/0.2)]">
             <Zap size={16} className="text-secondary" />
             <span className="text-sm text-secondary font-medium">Technical Expertise</span>
           </div>

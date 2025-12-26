@@ -1,4 +1,4 @@
-import { Briefcase, Calendar, CheckCircle2, Star, Rocket } from "lucide-react";
+import { Briefcase, Calendar, CheckCircle2, Star, Rocket, Award } from "lucide-react";
 
 const ExperienceSection = () => {
   return (
@@ -6,9 +6,26 @@ const ExperienceSection = () => {
       {/* Grid Background */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,hsl(var(--muted)/0.3)_1px,transparent_1px),linear-gradient(to_bottom,hsl(var(--muted)/0.3)_1px,transparent_1px)] bg-[size:60px_60px]" />
       
-      {/* Gradient Orbs */}
-      <div className="absolute top-0 left-0 w-96 h-96 bg-gradient-to-br from-secondary/30 to-primary/10 rounded-full blur-3xl animate-pulse" />
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-gradient-to-br from-primary/30 to-accent/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: "1s" }} />
+      {/* Radial gradient overlay */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,transparent_0%,hsl(var(--background))_70%)]" />
+      
+      {/* Gradient Orbs - Enhanced */}
+      <div className="absolute top-0 left-0 w-[450px] h-[450px] bg-gradient-to-br from-secondary/30 via-primary/15 to-transparent rounded-full blur-3xl animate-pulse" />
+      <div className="absolute bottom-0 right-0 w-[450px] h-[450px] bg-gradient-to-br from-primary/30 via-accent/15 to-transparent rounded-full blur-3xl animate-pulse" style={{ animationDelay: "1s" }} />
+      <div className="absolute top-1/2 right-1/4 w-[350px] h-[350px] bg-gradient-to-br from-accent/20 to-secondary/10 rounded-full blur-3xl opacity-60" />
+
+      {/* Floating particles */}
+      {[...Array(6)].map((_, i) => (
+        <div
+          key={i}
+          className="absolute w-1.5 h-1.5 bg-accent/30 rounded-full animate-float"
+          style={{
+            left: `${20 + i * 12}%`,
+            top: `${25 + (i % 3) * 20}%`,
+            animationDelay: `${i * 0.6}s`,
+          }}
+        />
+      ))}
 
       {/* Floating Elements */}
       <div className="absolute top-1/4 right-10 opacity-20 animate-float">
@@ -17,10 +34,13 @@ const ExperienceSection = () => {
       <div className="absolute bottom-1/3 left-16 opacity-20 animate-float" style={{ animationDelay: "1.5s" }}>
         <Rocket size={36} className="text-primary" />
       </div>
+      <div className="absolute top-1/2 right-1/3 opacity-15 animate-float" style={{ animationDelay: "2s" }}>
+        <Award size={28} className="text-accent" />
+      </div>
 
       <div className="container mx-auto relative z-10">
         <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/10 border border-accent/20 mb-6">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/10 border border-accent/20 mb-6 backdrop-blur-sm shadow-[0_0_20px_hsl(var(--accent)/0.2)]">
             <Briefcase size={16} className="text-accent" />
             <span className="text-sm text-accent font-medium">Professional Journey</span>
           </div>
