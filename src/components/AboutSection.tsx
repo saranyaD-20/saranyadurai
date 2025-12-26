@@ -1,4 +1,4 @@
-import { GraduationCap, Target, Sparkles, Code2, Brain, Database } from "lucide-react";
+import { GraduationCap, Target, Sparkles, Code2, Brain, Database, User } from "lucide-react";
 
 const AboutSection = () => {
   return (
@@ -6,10 +6,26 @@ const AboutSection = () => {
       {/* Grid Background */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,hsl(var(--muted)/0.3)_1px,transparent_1px),linear-gradient(to_bottom,hsl(var(--muted)/0.3)_1px,transparent_1px)] bg-[size:60px_60px]" />
       
-      {/* Gradient Orbs */}
-      <div className="absolute top-20 right-20 w-80 h-80 bg-gradient-to-br from-secondary/30 to-accent/20 rounded-full blur-3xl animate-pulse" />
-      <div className="absolute bottom-20 left-20 w-80 h-80 bg-gradient-to-br from-primary/30 to-neon-pink/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: "1s" }} />
+      {/* Radial gradient overlay */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,hsl(var(--background))_70%)]" />
       
+      {/* Gradient Orbs - Enhanced */}
+      <div className="absolute top-20 right-20 w-[400px] h-[400px] bg-gradient-to-br from-secondary/30 via-accent/20 to-transparent rounded-full blur-3xl animate-pulse" />
+      <div className="absolute bottom-20 left-20 w-[400px] h-[400px] bg-gradient-to-br from-primary/30 via-neon-pink/20 to-transparent rounded-full blur-3xl animate-pulse" style={{ animationDelay: "1s" }} />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-br from-primary/10 to-secondary/10 rounded-full blur-3xl opacity-50" />
+
+      {/* Floating particles */}
+      {[...Array(6)].map((_, i) => (
+        <div
+          key={i}
+          className="absolute w-1.5 h-1.5 bg-primary/30 rounded-full animate-float"
+          style={{
+            left: `${15 + i * 15}%`,
+            top: `${20 + (i % 3) * 25}%`,
+            animationDelay: `${i * 0.5}s`,
+          }}
+        />
+      ))}
       {/* Floating Elements */}
       <div className="absolute top-1/4 left-10 opacity-20 animate-float">
         <Code2 size={40} className="text-primary" />
@@ -23,8 +39,8 @@ const AboutSection = () => {
 
       <div className="container mx-auto relative z-10">
         <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-6">
-            <Sparkles size={16} className="text-primary" />
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-6 backdrop-blur-sm shadow-[0_0_20px_hsl(var(--primary)/0.2)]">
+            <User size={16} className="text-primary" />
             <span className="text-sm text-primary font-medium">Know More About Me</span>
           </div>
           <h2 className="text-4xl md:text-5xl font-display font-bold mb-4">
