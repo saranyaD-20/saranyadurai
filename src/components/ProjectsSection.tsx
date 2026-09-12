@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ExternalLink, Github, ChevronLeft, ChevronRight, Smartphone, Wallet, Plane, FileText, Sparkles, Layers } from "lucide-react";
+import { ExternalLink, Github, ChevronLeft, ChevronRight, Smartphone, Newspaper, Plane, FileText, Sparkles, Layers, Globe2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const projects = [
@@ -13,16 +13,18 @@ const projects = [
     hasVideo: true,
     videoSrc: "/videos/bloodbuddy-demo.mp4",
     githubUrl: "https://github.com/saranyaD-20",
+    liveUrl: "",
   },
   {
-    title: "Personal Finance Manager",
-    subtitle: "Python-Based Financial Tracker",
-    icon: Wallet,
+    title: "News Article Summarizer",
+    subtitle: "Python, Flask & NLP Web Application",
+    icon: Newspaper,
     description:
-      "Built a Python-based app to track income, expenses, and generate reports using Matplotlib and Pandas. Implemented rule-based categorization and secure CSV/database storage.",
-    techStack: ["Python", "Pandas", "Matplotlib", "CSV/Database"],
+      "Built a Flask web app that extracts articles from URLs and generates concise summaries using NLP. Tested extraction and summarization logic across varied article formats to validate accuracy.",
+    techStack: ["Python", "Flask", "NLP", "JavaScript", "Render"],
     hasVideo: false,
     githubUrl: "https://github.com/saranyaD-20",
+    liveUrl: "",
   },
   {
     title: "Greenhouse Gas Emission Analysis",
@@ -33,6 +35,18 @@ const projects = [
     techStack: ["Python", "SVM", "LSTM", "Random Forest", "Scikit-learn"],
     hasVideo: false,
     githubUrl: "https://github.com/saranyaD-20",
+    liveUrl: "",
+  },
+  {
+    title: "GEO Auditor",
+    subtitle: "Generative Engine Optimization Platform",
+    icon: Globe2,
+    description:
+      "Built a technical auditing platform that evaluates website readiness for AI-powered search. It analyzes structured data, metadata, and content readability, then provides a GEO Score and prioritized recommendations.",
+    techStack: ["React", "Vite", "Python", "Flask", "BeautifulSoup"],
+    hasVideo: false,
+    githubUrl: "https://github.com/saranyaD-20/geo-auditor",
+    liveUrl: "",
   },
 ];
 
@@ -166,28 +180,35 @@ const ProjectsSection = () => {
 
               {/* Action Buttons */}
               <div className="flex gap-3 pt-2 relative z-10">
-                <a
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  asChild
+                  className="w-12 h-12 rounded-full bg-muted/50 border border-border/50 hover:bg-primary/20 hover:border-primary/50 hover:shadow-[0_0_20px_hsl(var(--primary)/0.3)] transition-all group/btn"
+                ><a
                   href={project.githubUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-12 h-12 rounded-full bg-muted/50 border border-border/50 flex items-center justify-center hover:bg-primary/20 hover:border-primary/50 hover:shadow-[0_0_20px_hsl(var(--primary)/0.3)] transition-all group/btn"
+                  aria-label={`View ${project.title} on GitHub`}
                 >
                   <Github className="w-5 h-5 group-hover/btn:scale-110 transition-transform" />
-                </a>
+                </a></Button>
+                <Button variant="ghost" size="icon" asChild className="w-12 h-12 rounded-full bg-muted/50 border border-border/50 hover:bg-secondary/20 hover:border-secondary/50 transition-all group/btn">
                 <a
                   href="/Saranya_Resume.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-12 h-12 rounded-full bg-muted/50 border border-border/50 flex items-center justify-center hover:bg-secondary/20 hover:border-secondary/50 hover:shadow-[0_0_20px_hsl(var(--secondary)/0.3)] transition-all group/btn"
+                  aria-label="View Saranya's résumé"
                 >
                   <FileText className="w-5 h-5 group-hover/btn:scale-110 transition-transform" />
-                </a>
-                <button
-                  disabled
-                  className="w-12 h-12 rounded-full bg-muted/50 border border-border/50 flex items-center justify-center opacity-50 cursor-not-allowed"
-                >
-                  <ExternalLink className="w-5 h-5" />
-                </button>
+                </a></Button>
+                {project.liveUrl && (
+                  <Button variant="ghost" size="icon" asChild className="w-12 h-12 rounded-full bg-muted/50 border border-border/50">
+                    <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" aria-label={`Open ${project.title}`}>
+                      <ExternalLink className="w-5 h-5" />
+                    </a>
+                  </Button>
+                )}
               </div>
             </div>
           </div>
@@ -207,10 +228,13 @@ const ProjectsSection = () => {
           {/* Dots */}
           <div className="flex gap-3">
             {projects.map((_, index) => (
-              <button
+              <Button
+                variant="ghost"
+                size="icon"
                 key={index}
                 onClick={() => setCurrentIndex(index)}
-                className={`transition-all duration-300 ${
+                aria-label={`Show project ${index + 1}`}
+                className={`p-0 transition-all duration-300 ${
                   index === currentIndex
                     ? "w-8 h-3 rounded-full bg-gradient-to-r from-primary to-secondary shadow-[0_0_15px_hsl(var(--primary)/0.5)]"
                     : "w-3 h-3 rounded-full bg-muted-foreground/30 hover:bg-muted-foreground/50"

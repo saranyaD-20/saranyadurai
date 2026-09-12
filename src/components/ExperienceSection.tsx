@@ -1,5 +1,28 @@
 import { Briefcase, Calendar, CheckCircle2, Star, Rocket, Award } from "lucide-react";
 
+const experiences = [
+  {
+    role: "Database & Workflow Development Intern",
+    company: "Autometry Technologies Pvt Ltd, Chennai",
+    duration: "Nov 2025 – Jan 2026",
+    points: [
+      "Developed an Expense Tracking & Approval Workflow Database to streamline financial approvals",
+      "Designed database structures for efficient storage, retrieval, and expense management",
+      "Worked with structured data and performed validation checks for consistent, accurate records",
+    ],
+  },
+  {
+    role: "Python Developer Intern",
+    company: "Innobyte Services · Remote",
+    duration: "May 2025 – Jul 2025",
+    points: [
+      "Developed and tested Python automation scripts using object-oriented principles",
+      "Verified script outputs against expected results to ensure reliable behavior",
+      "Cleaned, validated, and visualized data using Pandas, NumPy, and Matplotlib",
+    ],
+  },
+];
+
 const ExperienceSection = () => {
   return (
     <section id="experience" className="section-padding relative overflow-hidden">
@@ -57,7 +80,9 @@ const ExperienceSection = () => {
           <div className="relative">
             <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary via-secondary to-accent hidden md:block" />
 
-            <div className="glass-card p-8 hover-lift relative group overflow-hidden ml-0 md:ml-16">
+            <div className="space-y-8 ml-0 md:ml-16">
+            {experiences.map((experience) => (
+            <div key={experience.role} className="glass-card p-8 hover-lift relative group overflow-hidden">
               {/* Animated border */}
               <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-primary via-secondary to-accent opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10 blur-sm" />
               
@@ -80,26 +105,21 @@ const ExperienceSection = () => {
 
                 <div className="flex-1">
                   <div className="flex flex-wrap items-center gap-4 mb-4">
-                    <h3 className="text-2xl font-display font-bold group-hover:text-primary transition-colors">Python Developer Intern</h3>
+                    <h3 className="text-2xl font-display font-bold group-hover:text-primary transition-colors">{experience.role}</h3>
                     <span className="px-4 py-1.5 rounded-full bg-gradient-to-r from-secondary/20 to-secondary/10 text-secondary text-sm font-medium border border-secondary/20">
                       Internship
                     </span>
                   </div>
 
-                  <p className="text-xl text-primary font-semibold mb-2">Innobyte Technologies</p>
+                  <p className="text-xl text-primary font-semibold mb-2">{experience.company}</p>
 
                   <div className="inline-flex items-center gap-2 text-muted-foreground mb-6 px-3 py-1.5 rounded-full bg-muted/30">
                     <Calendar size={16} />
-                    <span>1 Month Duration</span>
+                    <span>{experience.duration}</span>
                   </div>
 
                   <div className="space-y-4">
-                    {[
-                      "Worked on Python-based development tasks and projects",
-                      "Gained hands-on experience in real-world coding and problem-solving",
-                      "Exposure to professional development workflows and best practices",
-                      "Collaborated with team members on technical implementations",
-                    ].map((item, index) => (
+                    {experience.points.map((item, index) => (
                       <div key={index} className="flex items-start gap-3 group/item">
                         <div className="p-1 rounded-full bg-accent/10 mt-0.5">
                           <CheckCircle2 className="w-4 h-4 text-accent" />
@@ -110,6 +130,8 @@ const ExperienceSection = () => {
                   </div>
                 </div>
               </div>
+            </div>
+            ))}
             </div>
           </div>
 

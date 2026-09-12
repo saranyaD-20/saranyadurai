@@ -63,9 +63,9 @@ const AboutSection = () => {
                 <div>
                   <h3 className="text-xl font-display font-semibold mb-2 group-hover:text-primary transition-colors">Who I Am</h3>
                   <p className="text-muted-foreground leading-relaxed">
-                    I'm Saranya D, a passionate AI and Data Science enthusiast with a keen interest
-                    in Data Analytics. I thrive on solving complex problems using data-driven
-                    approaches and am constantly exploring new technologies to expand my skillset.
+                    I'm Saranya D, an Artificial Intelligence and Data Science graduate with
+                    internship experience in Python development, database workflows, data
+                    processing, validation, and analysis.
                   </p>
                 </div>
               </div>
@@ -88,6 +88,7 @@ const AboutSection = () => {
                   <div className="inline-flex items-center gap-2 mt-2 px-3 py-1 rounded-full bg-secondary/10 text-secondary text-sm">
                     <span>2022 – 2026</span>
                   </div>
+                  <p className="text-sm text-foreground font-medium mt-3">CGPA: 8.4 / 10</p>
                 </div>
               </div>
             </div>
@@ -101,9 +102,9 @@ const AboutSection = () => {
                 <div>
                   <h3 className="text-xl font-display font-semibold mb-2 group-hover:text-accent transition-colors">Career Goals</h3>
                   <p className="text-muted-foreground leading-relaxed">
-                    I'm a learning-driven individual seeking opportunities to grow as a data analyst
-                    or AI professional. My goal is to contribute to innovative projects that make a
-                    meaningful impact on society through intelligent data solutions.
+                    I'm seeking an entry-level Analyst role focused on data delivery, processing,
+                    quality checks, and technology modernization, where I can apply strong
+                    analytical thinking and continue learning.
                   </p>
                 </div>
               </div>
@@ -114,9 +115,9 @@ const AboutSection = () => {
           <div className="grid grid-cols-2 gap-6">
             {[
               { value: "B.Tech", label: "AI & Data Science", color: "primary", icon: Brain },
-              { value: "2024", label: "Python Intern", color: "secondary", icon: Code2 },
-              { value: "2+", label: "Projects Completed", color: "accent", icon: Target },
-              { value: "∞", label: "Curiosity Level", color: "neon-pink", icon: Sparkles },
+              { value: "8.4", label: "CGPA / 10", color: "secondary", icon: GraduationCap },
+              { value: "2", label: "Internships", color: "accent", icon: Code2 },
+              { value: "4+", label: "Featured Projects", color: "neon-pink", icon: Target },
             ].map((stat, index) => {
               const IconComponent = stat.icon;
               return (

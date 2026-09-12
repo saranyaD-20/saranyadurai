@@ -1,4 +1,4 @@
-import { Code2, Database, BarChart3, Wrench, Zap } from "lucide-react";
+import { Code2, Database, BarChart3, Wrench, Zap, Award } from "lucide-react";
 
 const skillCategories = [
   {
@@ -12,36 +12,43 @@ const skillCategories = [
     ],
   },
   {
-    title: "Tools & Technologies",
+    title: "API & Development Tools",
     icon: Wrench,
     color: "secondary",
     skills: [
-      { name: "SPSS", level: 75 },
-      { name: "XAMPP", level: 70 },
+      { name: "REST APIs", level: 78 },
+      { name: "Postman", level: 75 },
       { name: "Git", level: 80 },
       { name: "GitHub", level: 85 },
     ],
   },
   {
-    title: "Data Visualization",
+    title: "Data Processing",
     icon: BarChart3,
     color: "accent",
     skills: [
-      { name: "Excel", level: 90 },
-      { name: "Tableau", level: 75 },
-      { name: "Power BI", level: 70 },
+      { name: "Pandas", level: 85 },
+      { name: "NumPy", level: 80 },
+      { name: "Matplotlib", level: 80 },
     ],
   },
   {
-    title: "Databases & More",
+    title: "Data & Machine Learning",
     icon: Database,
     color: "neon-pink",
     skills: [
-      { name: "MySQL", level: 80 },
+      { name: "Database Workflows", level: 80 },
       { name: "Data Analysis", level: 85 },
       { name: "Machine Learning", level: 70 },
     ],
   },
+];
+
+const certifications = [
+  "HackerRank Python (Basic)",
+  "Oracle Cloud Infrastructure 2025 Data Science Professional",
+  "CTIA (EC-Council)",
+  "R Programming Bootcamp (Udemy)",
 ];
 
 const SkillsSection = () => {
@@ -170,6 +177,21 @@ const SkillsSection = () => {
               </div>
             );
           })}
+        </div>
+
+        <div className="mt-10 glass-card p-6 relative overflow-hidden">
+          <div className="flex items-center gap-3 mb-5">
+            <div className="p-3 rounded-xl bg-accent/10 text-accent"><Award size={24} /></div>
+            <h3 className="text-xl font-display font-semibold">Certifications</h3>
+          </div>
+          <div className="grid sm:grid-cols-2 gap-3">
+            {certifications.map((certification) => (
+              <div key={certification} className="flex items-center gap-3 rounded-lg border border-border/50 bg-muted/30 px-4 py-3">
+                <span className="w-2 h-2 rounded-full bg-accent flex-shrink-0" />
+                <span className="text-sm text-muted-foreground">{certification}</span>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
