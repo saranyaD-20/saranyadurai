@@ -1,4 +1,4 @@
-import { ArrowDown, Eye, Mail, Sparkles, MapPin, Calendar, Download } from "lucide-react";
+import { Eye, Mail, Sparkles, MapPin, Calendar, Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import profilePhoto from "@/assets/profile-photo.jpg";
 
@@ -56,10 +56,10 @@ const HeroSection = () => {
               style={{ animationDelay: "0.3s", animationFillMode: "forwards" }}
             >
               <span className="px-4 py-1.5 rounded-full bg-gradient-to-r from-primary/20 to-secondary/20 border border-primary/30 text-sm font-semibold text-foreground backdrop-blur-sm">
-                AI & Data Science
+                AI & Data Science Graduate
               </span>
               <span className="px-4 py-1.5 rounded-full bg-gradient-to-r from-secondary/20 to-accent/20 border border-secondary/30 text-sm font-semibold text-foreground backdrop-blur-sm">
-                Data Analyst
+                Aspiring Data Analyst
               </span>
             </div>
 
@@ -67,9 +67,10 @@ const HeroSection = () => {
               className="text-lg md:text-xl text-muted-foreground max-w-xl mx-auto lg:mx-0 mb-8 leading-relaxed opacity-0 animate-fade-in-up"
               style={{ animationDelay: "0.4s", animationFillMode: "forwards" }}
             >
-              Passionate about leveraging <span className="text-primary font-medium">AI</span> and{" "}
-              <span className="text-secondary font-medium">data science</span> to solve real-world problems.
-              Transforming raw data into meaningful insights and intelligent solutions.
+              Turning structured data into reliable insights through{" "}
+              <span className="text-primary font-medium">analysis</span>, automation, and{" "}
+              <span className="text-secondary font-medium">quality-focused processing</span>. Seeking an
+              entry-level analyst role in data delivery and technology modernization.
             </p>
 
             {/* Info Pills */}
@@ -120,7 +121,7 @@ const HeroSection = () => {
               style={{ animationDelay: "0.6s", animationFillMode: "forwards" }}
             >
               <span className="text-xs text-muted-foreground mr-2">Tech Stack:</span>
-              {["Python", "SQL", "Tableau", "Power BI", "Machine Learning"].map((item, index) => (
+              {["Python", "SQL", "Pandas", "REST APIs", "Git", "Machine Learning"].map((item, index) => (
                 <span
                   key={item}
                   className="px-3 py-1 rounded-md bg-muted/50 border border-border/50 text-xs text-muted-foreground hover:border-primary/50 hover:text-primary transition-colors cursor-default"
